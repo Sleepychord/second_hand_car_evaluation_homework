@@ -7,9 +7,9 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var evaluate = require('./routes/evaluate');
-var login = require('./routes/login');
+var login2 = require('./routes/login');
 var face = require('./routes/face');
-
+var check = require('./helper/login_helper').check;
 var app = express();
 
 // view engine setup
@@ -25,8 +25,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
-app.use('/evaluate', evaluate);
-app.use('/login', login)
+app.use('/evaluate', check, evaluate);
+app.use('/login', login2)
 app.use('/face', face)
 
 // catch 404 and forward to error handler

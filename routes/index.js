@@ -1,8 +1,9 @@
 var express = require('express');
 var router = express.Router();
+var check = require('../helper/login_helper').check;
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/', check, function(req, res, next) {
   features = [{name : 'make', init : 'audi'},
     {name : 'body-style', init : 'wagon'},
     {name : 'wheel-base', init : '104.3'}, 
