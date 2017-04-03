@@ -8,6 +8,8 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var evaluate = require('./routes/evaluate');
 var login = require('./routes/login');
+var face = require('./routes/face');
+
 var app = express();
 
 // view engine setup
@@ -25,6 +27,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/evaluate', evaluate);
 app.use('/login', login)
+app.use('/face', face)
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
@@ -39,6 +43,7 @@ app.use(function(req, res, next) {
 if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
     res.status(err.status || 500);
+    console.log(err.message)
     res.render('error', {
       message: err.message,
       error: err

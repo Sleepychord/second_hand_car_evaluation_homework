@@ -6,8 +6,13 @@ block content
     #my_camera
     .button
         button(onclick='take_snapshot()') Snapshot
+        button#btn_upload(onclick='upload()') Detect
+        a#btn_jump(href='/', type='button') Go to Evaluate
     img#img(src='')
     script(language='JavaScript').
+        $(document).ready(function() {
+            $('#btn_upload,#btn_jump').hide();
+        });
         Webcam.set({
         width: 320,
         height: 240,
@@ -18,11 +23,16 @@ block content
         function take_snapshot() {
         Webcam.snap( function(data_uri) {
         $("#img").attr("src", data_uri);
+        $('#btn_upload').show();
         } );
         }
         function upload() {
         Webcam.upload( $("#img").attr("src"), '/face', function(code, text) {
-            alert(code);
+            if(code > 400) alert('error');
+            else {
+                alert(text);
+                $('#btn_jump').show();
+            }
         });
         }
 
