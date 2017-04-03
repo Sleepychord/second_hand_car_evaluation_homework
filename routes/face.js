@@ -42,7 +42,7 @@ router.post('/', multer.single('webcam'), function(req, res, next) {
                 res.cookie("session_id", sid, {path: '/'});
                 res.send(ret)
             })
-        else res.send('No Faces or Error ~ Please try again')
+        else res.send('No Face or Error ~ Please try again')
     }
     console.log(req.file.filename)
     detectReq('http://52.175.27.87/files/'+req.file.filename, ok)
