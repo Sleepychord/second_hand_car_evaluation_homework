@@ -31,7 +31,8 @@ block content
             if(code > 400) alert('error');
             else {
                 alert(text);
-                $('#btn_jump').show();
+                if(text != 'No Faces or Error ~ Please try again')
+                    $('#btn_jump').show();
             }
         });
         }

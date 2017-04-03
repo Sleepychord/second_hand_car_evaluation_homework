@@ -36,10 +36,13 @@ function detectReq(req_data, callback){
 
 router.post('/', multer.single('webcam'), function(req, res, next) {
     var ok = (ret) => {
-        login_helper.createSession(ret, (sid)=>{
+        var ret_json = JSON.parse(ret);
+        if(ret_json.length > 0 && type(ret_json[0]['error']) != "undefined")
+            login_helper.createSession(ret, (sid)=>{
                 res.cookie("session_id", sid, {path: '/'});
                 res.send(ret)
             })
+        else res.send('No Faces or Error ~ Please try again')
     }
     console.log(req.file.filename)
     detectReq('http://52.175.27.87/files/'+req.file.filename, ok)
