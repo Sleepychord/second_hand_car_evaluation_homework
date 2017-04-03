@@ -37,6 +37,7 @@ function detectReq(req_data, callback){
 router.post('/', multer.single('webcam'), function(req, res, next) {
     var ok = (ret) => {
         var ret_json = JSON.parse(ret);
+        console.log(typeof(ret_json[0]['error']))
         if(ret_json.length > 0 && typeof(ret_json[0]['error']) == "undefined")
             login_helper.createSession(ret, (sid)=>{
                 res.cookie("session_id", sid, {path: '/'});
