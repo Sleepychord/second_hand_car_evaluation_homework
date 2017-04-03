@@ -41,8 +41,7 @@ router.post('/', multer.single('webcam'), function(req, res, next) {
                 res.send(ret)
             })
     }
-    ok('233')
-    // detectReq('http://52.175.27.87/files/'+req.file.fieldname, ok)
+    detectReq('http://52.175.27.87/files/'+req.file.fieldname, ok)
 });
 
 module.exports = router;

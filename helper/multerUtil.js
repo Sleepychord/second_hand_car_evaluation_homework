@@ -1,7 +1,7 @@
 var  multer=require('multer');
 var storage = multer.diskStorage({
         destination: function (req, file, cb) {
-            cb(null, '../public/files') //注意这里通过bin/www方式启动
+            cb(null, './public/files') //注意这里通过bin/www方式启动
        }, 
      //给上传文件重命名，获取添加后缀名
       filename: function (req, file, cb) {
