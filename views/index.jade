@@ -3,3 +3,27 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
+  form#req_form(action='/evaluate', method='get')
+    #text_box
+      - for(var i in features)
+        div
+          | #{features[i].name}: 
+          input(type='text', name='#{features[i].name}',placeholder='#{features[i].init}' )
+      button(type='submit') Predict
+    p.status Please Waiting~
+  script(type='text/javascript').
+    $(document).ready(function() {
+      options = {
+          success:  function(res){
+            $('.status').html('Appraisal: ' + res);
+          }
+      }
+      $('.status').hide();
+      $('#req_form').submit(function() {
+        $('.status').html('Please Waiting~');
+        $('.status').show();
+        $(this).ajaxSubmit(options);
+        return false; 
+      });
+    });
+

@@ -3,7 +3,14 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  features = [{name : 'make', init : 'audi'},
+    {name : 'body-style', init : 'wagon'},
+    {name : 'wheel-base', init : '104.3'}, 
+    {name : 'engine-size', init : '141'}, 
+    {name : 'horsepower', init : '114'}, 
+    {name : 'peak-rpm', init : '5400'}, 
+    {name : 'highway-mpg', init : '28'}];
+  res.render('index', { title: 'Second-Hand Cars Evaluation' , features : features});
 });
 
 module.exports = router;

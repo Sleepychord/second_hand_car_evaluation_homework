@@ -6,3 +6,4 @@ body {
 a {
   color: #00B7FF;
 }
+#webcam{ border: 1px solid #666666; width: auto; height: auto; float: left; }
