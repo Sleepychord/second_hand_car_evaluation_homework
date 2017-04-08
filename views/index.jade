@@ -34,7 +34,7 @@ block content
             $('.status').html('Appraisal: ' + res);
           }
       }
-      var username = getCookie(c_name);
+      var username = getCookie('username');
       if(username) $('#username').html('username:' + username);
       $('.status').hide();
       $('#req_form').submit(function() {
