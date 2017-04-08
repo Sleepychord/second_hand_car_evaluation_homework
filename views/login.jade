@@ -7,12 +7,9 @@ block content
     .button
         button(onclick='take_snapshot()') Snapshot
         button#btn_upload(onclick='upload()') Detect
-        a#btn_jump(href='/', type='button') Go to Evaluate
+        a(href='/login/signup') Sign up
     img#img(src='')
     script(language='JavaScript').
-        $(document).ready(function() {
-            $('#btn_upload,#btn_jump').hide();
-        });
         Webcam.set({
         width: 320,
         height: 240,
@@ -27,12 +24,10 @@ block content
         } );
         }
         function upload() {
-        Webcam.upload( $("#img").attr("src"), '/face', function(code, text) {
+        Webcam.upload( $("#img").attr("src"), '/face/login', function(code, text) {
             if(code > 400) alert('error');
             else {
                 alert(text);
-                if(text != 'No Face or Error ~ Please try again')
-                    $('#btn_jump').show();
             }
         });
         }

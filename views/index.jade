@@ -3,6 +3,7 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
+  p#username 
   form#req_form(action='/evaluate', method='get')
     #text_box
       - for(var i in features)
@@ -12,12 +13,29 @@ block content
       button(type='submit') Predict
     p.status Please Waiting~
   script(type='text/javascript').
+    function getCookie(c_name)
+    {
+    if (document.cookie.length>0)
+    {
+    c_start=document.cookie.indexOf(c_name + "=")
+    if (c_start!=-1)
+    {
+    c_start=c_start + c_name.length+1
+    c_end=document.cookie.indexOf(";",c_start)
+    if (c_end==-1) c_end=document.cookie.length
+    return unescape(document.cookie.substring(c_start,c_end))
+    }
+    }
+    return ""
+    }
     $(document).ready(function() {
       options = {
           success:  function(res){
             $('.status').html('Appraisal: ' + res);
           }
       }
+      var username = getCookie(c_name);
+      if(username) $('#username').html('username:' + username);
       $('.status').hide();
       $('#req_form').submit(function() {
         $('.status').html('Please Waiting~');
