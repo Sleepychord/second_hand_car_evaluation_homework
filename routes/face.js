@@ -14,6 +14,7 @@ function sendReq(option, body, callback){
       });
       res.on('end', function() {
       //这里接收的参数是字符串形式,需要格式化成json格式使用
+          console.log('https get: '+responseString)
           callback(JSON.parse(responseString))
       });
       r.on('error', function(e) {
