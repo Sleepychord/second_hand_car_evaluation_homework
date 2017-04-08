@@ -1,12 +1,17 @@
 #二手车估价作业文档
 ##功能及截图
 ###人脸识别
+####登录功能
 人脸识别功能通过在网页上开启摄像头，选择合适的位置照相。这里使用了历史悠久、兼容性好的flash库进行显示。
-![](https://raw.githubusercontent.com/Sleepychord/second_hand_car_evaluation_homework/master/pic/1.png)
+![](https://raw.githubusercontent.com/Sleepychord/second_hand_car_evaluation_homework/master/pic/3.png)
 点击detect后会使用微软的API进行人脸识别。
 
-将会有弹出窗告知识别结果，如果没能发现人脸需要重新识别。识别成功后后台将年龄等信息记录入数据库（提高功能1），并分配session_id，同时前端显示进入车辆识别页面的超链接。
+将会有弹出窗告知识别结果，如果没能发现人脸需要重新识别，如果发现并且从注册用户中找到比较像的人脸后会自动登录。，并分配session_id，同时前端显示进入车辆识别页面的超链接。
+####注册功能
+注册界面与登录类似，只是需要注册的用户名和人脸。
+![](https://raw.githubusercontent.com/Sleepychord/second_hand_car_evaluation_homework/master/pic/1.png)
 ### 二手车估价
+首先，页面会有一行显示当前登录用户名。
 利用微软云平台上训练好的API进行识别，这里只要求输入作为Feature的那些列的数据。
 ![](https://raw.githubusercontent.com/Sleepychord/second_hand_car_evaluation_homework/master/pic/2.png)
 
