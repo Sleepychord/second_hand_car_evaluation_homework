@@ -30,7 +30,7 @@ block content
         } );
         }
         function upload() {
-        var username = $('username').val();
+        var username = $('#username').val();
         if(username)
             Webcam.upload( $("#img").attr("src"), '/face/signup?username='+username, function(code, text) {
                 if(code > 400) alert('error');
