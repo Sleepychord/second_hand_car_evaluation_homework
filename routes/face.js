@@ -85,6 +85,7 @@ router.post('/signup', multer.single('webcam'), function(req, res, next) {
 
 router.post('/login', multer.single('webcam'), function(req, res, next) {
     var pic_url = 'http://52.175.27.87/files/'+req.file.filename;
+    console.log(pic_url)
     var after_detect = (ret_json) => {
         if(ret_json.length > 0){
             var info = ret_json[0];
@@ -95,6 +96,7 @@ router.post('/login', multer.single('webcam'), function(req, res, next) {
                             maxNumOfCandidatesReturned:1
                        }
             console.log("detect: "+ info)
+            console.log("ready to post similar: "+ data)
             findSimilarReq(data, (ret)=>{
                     console.log("similar: "+ ret)
                     if(ret.length > 0 && ret[0]['confidence'] > 0.6){//found
