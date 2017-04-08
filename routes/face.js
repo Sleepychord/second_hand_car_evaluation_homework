@@ -95,8 +95,8 @@ router.post('/login', multer.single('webcam'), function(req, res, next) {
                             faceListId: 'second_hand_cars',
                             maxNumOfCandidatesReturned:1
                        }
-            console.log("detect: "+ info)
-            console.log("ready to post similar: "+ data)
+            console.log("detect: "+ JSON.stringify(info))
+            console.log("ready to post similar: "+ JSON.stringify(data))
             findSimilarReq(data, (ret)=>{
                     console.log("similar: "+ ret)
                     if(ret.length > 0 && ret[0]['confidence'] > 0.6){//found
