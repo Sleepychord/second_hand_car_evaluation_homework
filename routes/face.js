@@ -64,7 +64,9 @@ router.post('/signup', multer.single('webcam'), function(req, res, next) {
         if(ret_json.length > 0){
             var info = ret_json[0];
             //add face to facelist, save persistedId and info in redis 
+            console.log("detect: "+ info)
             createAddListReq(pic_url, (ret)=>{
+                    console.log("addlist: "+ ret)
                     var savedData = info.assign({username: req.query.username})
                     db.client.set("persistedFaceId:"+ret['persistedFaceId'], JSON.stringify(savedData), (err)=>{console.log(err)})
                 })
@@ -91,7 +93,9 @@ router.post('/login', multer.single('webcam'), function(req, res, next) {
                             faceListId: 'second_hand_cars',
                             maxNumOfCandidatesReturned:1
                        }
+            console.log("detect: "+ info)
             findSimilarReq(data, (ret)=>{
+                    console.log("similar: "+ ret)
                     if(ret.length > 0 && ret[0]['confidence'] > 0.6){//found
                         //get attr and username of id
                         db.client.get("persistedFaceId:"+ret[0]['persistedFaceId'], (err, attr_str)=>{
