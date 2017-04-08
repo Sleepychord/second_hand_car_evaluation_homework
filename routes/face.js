@@ -68,14 +68,14 @@ router.post('/signup', multer.single('webcam'), function(req, res, next) {
             console.log("detect: "+ info)
             createAddListReq(pic_url, (ret)=>{
                     console.log("addlist: "+ ret)
-                    var savedData = info.assign({username: req.query.username})
+                    var savedData = Object.assign(info, {username: req.query.username})
                     db.client.set("persistedFaceId:"+ret['persistedFaceId'], JSON.stringify(savedData), (err)=>{console.log(err)})
                 })
             //createSession and return face attr
             login_helper.createSession(req.query.username, (sid)=>{
                     res.cookie("session_id", sid, {path: '/'});
                     res.cookie("username", req.query.username, {path: '/'});
-                    res.send(req.query.username + ', you have successfully signed up\nAttributes:'+info['faceAttributes'])
+                    res.send(req.query.username + ', you have successfully signed up\nAttributes:'+JSON.stringify(info['faceAttributes']))
                 })
         }
         else res.send('No Face or Error ~ Please try again')
