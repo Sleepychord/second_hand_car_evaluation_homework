@@ -105,6 +105,8 @@ router.post('/login', multer.single('webcam'), function(req, res, next) {
                         db.client.get("persistedFaceId:"+ret[0]['persistedFaceId'], (err, attr_str)=>{
                             var attr_obj = JSON.parse(attr_str)
                             console.log(attr_str)
+                            if(!attr_obj)
+                                attr_obj={username: 'unknown'}
                             //createSession and redirect to /
                             login_helper.createSession(attr_obj['username'], (sid)=>{
                                 res.cookie("session_id", sid, {path: '/'});
