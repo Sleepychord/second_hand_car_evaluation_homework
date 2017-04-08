@@ -109,7 +109,7 @@ router.post('/login', multer.single('webcam'), function(req, res, next) {
                             login_helper.createSession(attr_obj['username'], (sid)=>{
                                 res.cookie("session_id", sid, {path: '/'});
                                 res.cookie("username", attr_obj['username'], {path: '/'});
-                                res.redirect('/')
+                                res.send('login successfully,' + attr_obj['username'])
                             })
                         })
                     }else res.send('No Similar Face ~ Please try again')
