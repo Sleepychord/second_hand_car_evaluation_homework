@@ -46,7 +46,7 @@ function createAddListReq(data, callback){
       method:'POST',
       headers : {'Content-Type':'application/json', 'Ocp-Apim-Subscription-Key': api_key}
   }
-  sendReq(option, {url:req_data}, callback)  
+  sendReq(option, {url:data}, callback)  
 }
 function findSimilarReq(data, callback){
    var api_key = 'f66fba7cc70d4c45a431fbca06a662d8' 
