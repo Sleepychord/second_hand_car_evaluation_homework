@@ -53,7 +53,7 @@ function findSimilarReq(data, callback){
     var option = {
       hostname:'westus.api.cognitive.microsoft.com',
       port:443,
-      path:'face/v1.0/findsimilars',
+      path:'/face/v1.0/findsimilars',
       method:'POST',
       headers : {'Content-Type':'application/json', 'Ocp-Apim-Subscription-Key': api_key}
   }
