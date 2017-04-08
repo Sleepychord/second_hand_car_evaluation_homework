@@ -68,8 +68,9 @@ router.post('/signup', multer.single('webcam'), function(req, res, next) {
             console.log("detect: "+ info)
             createAddListReq(pic_url, (ret)=>{
                     console.log("addlist: "+ ret)
-                    var savedData = Object.assign(info, {username: req.query.username})
-                    db.client.set("persistedFaceId:"+ret['persistedFaceId'], JSON.stringify(savedData), (err)=>{console.log(err)})
+                    var savedData = JSON.stringify(Object.assign(info, {username: req.query.username}))
+                    console.log(savedData)
+                    db.client.set("persistedFaceId:"+ret['persistedFaceId'], savedData, (err)=>{console.log(err)})
                 })
             //createSession and return face attr
             login_helper.createSession(req.query.username, (sid)=>{
@@ -98,12 +99,12 @@ router.post('/login', multer.single('webcam'), function(req, res, next) {
             console.log("detect: "+ JSON.stringify(info))
             console.log("ready to post similar: "+ JSON.stringify(data))
             findSimilarReq(data, (ret)=>{
-                    console.log("similar: "+ ret)
+                    console.log("similar: "+ JSON.stringify(ret))
                     if(ret.length > 0 && ret[0]['confidence'] > 0.6){//found
                         //get attr and username of id
                         db.client.get("persistedFaceId:"+ret[0]['persistedFaceId'], (err, attr_str)=>{
                             var attr_obj = JSON.parse(attr_str)
-                            console.log(attr_obj)
+                            console.log(attr_str)
                             //createSession and redirect to /
                             login_helper.createSession(attr_obj['username'], (sid)=>{
                                 res.cookie("session_id", sid, {path: '/'});
