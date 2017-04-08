@@ -3,7 +3,7 @@
 ###人脸识别
 ####登录功能
 人脸识别功能通过在网页上开启摄像头，选择合适的位置照相。这里使用了历史悠久、兼容性好的flash库进行显示。
-![](https://raw.githubusercontent.com/Sleepychord/second_hand_car_evaluation_homework/master/pic/3.png)
+![](./pic/3.png)
 点击detect后会使用微软的API进行人脸识别。
 
 将会有弹出窗告知识别结果，如果没能发现人脸需要重新识别，如果发现并且从注册用户中找到比较像的人脸后会自动登录。，并分配session_id，同时前端显示进入车辆识别页面的超链接。
